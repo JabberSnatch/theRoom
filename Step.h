@@ -15,7 +15,7 @@ public:
 
     int choice;
 
-    Step();
+    Step(std::string desc, std::string x, std::string o);
 
     void runStep();
     //TODO (Samu#1#): Maybe add stuff in here?
