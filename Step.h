@@ -6,20 +6,40 @@
 class Step {
 
 public:
-    std::string description;
+    virtual Step* runStep() = 0;
+    virtual bool hasNext() = 0;
+
+};
+
+class Description
+    :public Step {
+
+public:
+    std::string text;
+    Step* nextStep;
+
+
+    Description(const std::string& text);
+
+    Step* runStep();
+    bool hasNext();
+};
+
+class Choice
+    :public Step {
+
+public:
     std::string xChoice;
     std::string oChoice;
 
     Step* xStep;
     Step* oStep;
 
-    int choice;
 
-    Step(std::string desc, std::string x, std::string o);
+    Choice(const std::string& xChoice, const std::string& oChoice);
 
-    void runStep();
-    //TODO (Samu#1#): Maybe add stuff in here?
-
+    Step* runStep();
+    bool hasNext();
 };
 
 #endif // STEP_H_INCLUDED
